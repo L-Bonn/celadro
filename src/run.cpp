@@ -144,6 +144,10 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
   const auto a  = area[n];
   const auto ll = laplacian(phi[n], sq);
   const auto ls = laplacian(sum, s);
+  const auto dx  = derivX(phi[n], sq);
+  const auto dy  = derivY(phi[n], sq);
+  const auto dxs = derivX(sum, s);
+  const auto dys = derivY(sum, s);
 
   const double internal = (
       // CH term
@@ -162,13 +166,37 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
       // adhesion with walls
       - 2*wall_omega*lambda*walls_laplace[k]
     );
+    
+  const double f_density = (
+    // ch
+    +gam*(4*p*p*(1-p)*(1-p)/lambda + lambda*(dx*dx+dy*dy))
+    
+    //rep
+    +kappa/lambda*(square[k]-p*p)*p*p
+    +kappa/lambda*walls[k]*walls[k]*p*p
+    
+    //area
+    +2*mu/a0*(1-a/a0)*p*p
+
+    //adhesion
+    -omega*lambda*(dx*(dxs-dx)+dy*(dys-dy))
+
+    // wall's adhesion : none
+    
+  );
 
   // delta F / delta phi_i
   V[n][q] = internal + interactions;
 
+  osm_pressure[k] += V[n][q]*p - f_density;
+
+  aniso_xx[k] += 2*gam*lambda*dx*dx;
+  aniso_yy[k] += 2*gam*lambda*dy*dy;
+  aniso_xy[k] += 2*gam*lambda*dx*dy;
+
+
   // pressure
   pressure[k] += p*interactions;
-  // don't keep p*
 }
 
 void Model::UpdateForcesAtNode(unsigned n, unsigned q)
@@ -186,6 +214,10 @@ void Model::UpdateForcesAtNode(unsigned n, unsigned q)
   stress_xx[k] = - pressure[k] - zetaS*sumS00[k] - zetaQ*sumQ00[k];
   stress_yy[k] = - pressure[k] + zetaS*sumS00[k] + zetaQ*sumQ00[k];
   stress_xy[k] = - zetaS*sumS01[k] - zetaQ*sumQ01[k];
+
+  stress_xx_real[k] = -osm_pressure[k] - aniso_xx[k];
+  stress_yy_real[k] = -osm_pressure[k] - aniso_yy[k];
+  stress_xy_real[k] = - aniso_xy[k];
 
   Fpressure[n] += { pressure[k]*dx, pressure[k]*dy };
   Fshape[n]    += { zetaS*sumS00[k]*dx + zetaS*sumS01[k]*dy,
@@ -359,6 +391,10 @@ void Model::ReinitSumsAtNode(unsigned k)
   sumQ00[k] = 0;
   sumQ01[k] = 0;
   pressure[k] = 0;
+  osm_pressure[k] = 0;
+  aniso_xx[k] = 0;
+  aniso_xy[k] = 0;
+  aniso_yy[k] = 0;
   U0[k] = 0;
   U1[k] = 0;
 }

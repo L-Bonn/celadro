@@ -96,7 +96,7 @@ struct Model
   /** Polarisation total torque */
   std::vector<double> delta_theta_pol;
   /** Stress tensor */
-  field stress_xx, stress_xy , stress_yy, pressure;
+  field stress_xx, stress_xy , stress_yy, pressure,  osm_pressure, aniso_xx, aniso_xy, aniso_yy, stress_xx_real, stress_xy_real, stress_yy_real;
   /** Elastic torque for the nematic */
   std::vector<double> tau;
   /** Vorticity around each cell */
@@ -610,6 +610,9 @@ struct Model
        & auto_name(stress_xx)
        & auto_name(stress_xy)
        & auto_name(stress_yy)
+       & auto_name(stress_xx_real)
+       & auto_name(stress_xy_real)
+       & auto_name(stress_yy_real)
        & auto_name(velocity)
        & auto_name(Fpol)
        & auto_name(Fnem)

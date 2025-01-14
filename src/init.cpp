@@ -42,9 +42,16 @@ void Model::Initialize()
   walls_laplace.resize(N, 0.);
   sum.resize(N, 0.);
   pressure.resize(N, 0.);
+  osm_pressure.resize(N, 0.);
+  aniso_xx.resize(N, 0.);
+  aniso_xy.resize(N, 0.);
+  aniso_yy.resize(N, 0.);
   stress_xx.resize(N, 0.);
   stress_xy.resize(N, 0.);
   stress_yy.resize(N, 0.);
+  stress_xx_real.resize(N, 0.);
+  stress_xy_real.resize(N, 0.);
+  stress_yy_real.resize(N, 0.);
   sumA.resize(N, 0.);
   sumS00.resize(N, 0.);
   sumS01.resize(N, 0.);
