@@ -188,6 +188,7 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
   // delta F / delta phi_i
   V[n][q] = internal + interactions;
 
+  // better pressure, from Hengdong
   osm_pressure[k] += V[n][q]*p - f_density;
 
   aniso_xx[k] += 2*gam*lambda*dx*dx;
@@ -197,6 +198,8 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
 
   // pressure
   pressure[k] += p*interactions;
+  //pressure[k] += interactions;
+  // where did the p* come from ?  better to remove
 }
 
 void Model::UpdateForcesAtNode(unsigned n, unsigned q)
@@ -215,6 +218,7 @@ void Model::UpdateForcesAtNode(unsigned n, unsigned q)
   stress_yy[k] = - pressure[k] + zetaS*sumS00[k] + zetaQ*sumQ00[k];
   stress_xy[k] = - zetaS*sumS01[k] - zetaQ*sumQ01[k];
 
+  // new stress
   stress_xx_real[k] = -osm_pressure[k] - aniso_xx[k];
   stress_yy_real[k] = -osm_pressure[k] - aniso_yy[k];
   stress_xy_real[k] = - aniso_xy[k];
