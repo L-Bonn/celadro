@@ -1,2 +1,6 @@
 *pyc
 *swp
+.idea/
+build/
+cmake-build-debug/
+test/

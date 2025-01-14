@@ -168,6 +168,7 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
 
   // pressure
   pressure[k] += p*interactions;
+  // don't keep p*
 }
 
 void Model::UpdateForcesAtNode(unsigned n, unsigned q)

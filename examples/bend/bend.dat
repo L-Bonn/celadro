@@ -2,19 +2,19 @@
 # Sample runcard showing cells showing bend instability
 #
 
-config     = random
-nsteps     = 15000
+config     = random # initial conditions
+nsteps     = 15000 # 5k warmup at least
 ninfo      = 20
 LX         = 100
 LY         = 100
 nsubsteps  = 5
 margin     = 25
-relax-time = 5000
+relax-time = 5000 # init steps before activity is added
 noise      = 0
-bc         = 0
+bc         = 0 # 0 for pbc
 
 # model parameters...
-# ...number of phases
+# ...number of phases (cells)
 nphases = 56
 # ...elastic constants for each phase
 gamma   = .015
@@ -31,10 +31,25 @@ R     = 8
 # ...cell-substrate friction
 xi    = 1
 
+# wall options...
+# ...thickness of the profile
+wall-thickness = .5
+# ...repulsion
+wall-kappa     = 1
+# ...adhesion
+wall-omega     = 0
+
 # nematic dynamics...
+# introduce artificial tensor which aligns according to these constants
 zetaQ = 5e-8
 S-nem = 1
 K-nem = 2e-5
 W-nem = 4e-3
 J-nem = 0
 D-nem = 1e-12
+
+# or 
+# zetaS = 3e-3
+# just S in terms of cell shape
+
+# align-nematic-to
