@@ -41,7 +41,7 @@ wall-omega     = 0
 
 # nematic dynamics...
 # introduce artificial tensor which aligns according to these constants
-zetaQ = 5e-8
+zetaQ = 5e-7
 S-nem = 1
 K-nem = 2e-5
 W-nem = 4e-3
@@ -53,3 +53,4 @@ D-nem = 1e-12
 # just S in terms of cell shape
 
 # align-nematic-to
+
