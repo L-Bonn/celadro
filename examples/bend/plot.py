@@ -13,7 +13,7 @@
 #              your mom.
 import sys
 
-sys.path.insert(0, "../plot/")
+sys.path.insert(0, "../../plot/")
 
 import plot
 import archive
