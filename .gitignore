@@ -6,3 +6,5 @@ cmake-build-debug/
 test/
 
 *.out
+.ipynb_checkpoints/
+*.ipynb
