@@ -230,7 +230,7 @@ struct Model
   /** Substrate friction parameter */
   double xi = 1;
   /** Prefered radii (area = pi*R*R) and radius growth */
-  double R = 8;
+  double R = 8;  
   /** Base area: a0 = Pi*R*R */
   double a0;
   /** Repuslion by the wall */
@@ -247,6 +247,19 @@ struct Model
   double Wnem = 0;
   /** Noise strength */
   double Dpol = 0, Dnem = 0;
+
+
+  /** Hacky events section */
+
+  double Rnew = R;
+  int time_Rnew = 0;
+
+  double munew = mu;
+  int time_munew = 0;
+
+  double zetaQnew = zetaQ;
+  int time_zetaQnew = 0;
+
 
   /** @} */
   /** Multi-threading parameters
@@ -590,8 +603,13 @@ struct Model
        & auto_name(margin)
        & auto_name(patch_size)
        & auto_name(align_nematic_to)
-       & auto_name(align_polarization_to);
-
+       & auto_name(align_polarization_to)
+       & auto_name(Rnew)
+       & auto_name(time_Rnew)
+       & auto_name(munew)
+       & auto_name(time_munew)
+       & auto_name(zetaQnew)
+       & auto_name(time_zetaQnew);
   }
 
   /** Serialization of parameters (in and out) */

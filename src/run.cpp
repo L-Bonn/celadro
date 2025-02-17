@@ -405,6 +405,7 @@ void Model::ReinitSumsAtNode(unsigned k)
 
 void Model::Update(bool store, unsigned nstart)
 {
+  cout << "R = " << R << endl;
   // Compute all global sums
   for(unsigned n=nstart; n<nphases; ++n)
   {

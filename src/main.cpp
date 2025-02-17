@@ -72,7 +72,19 @@ void Model::Algorithm()
                                  << t+ninfo << endl;
     if(verbose>1) cout << string(width, '-') << endl;
 
+    if (time_Rnew != 0  and t>time_Rnew) {
+      R = Rnew;
+    }
+    if (time_munew != 0  and t>time_munew) {
+      mu = munew;
+    }
+    if (time_zetaQnew != 0  and t>time_zetaQnew) {
+      zetaQ = zetaQnew;
+    }
+    
+    
     // do the computation
+
     for(unsigned s=0; s<streak_length; ++s)
     {
       // first sweeps produces estimate of values

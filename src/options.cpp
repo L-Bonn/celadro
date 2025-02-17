@@ -142,7 +142,19 @@ void Model::ParseProgramOptions(int ac, char **av)
     ("align-polarization-to", opt::value<int>(&align_polarization_to),
      "Align polarization to velocity (=0) or pressure force (=1)")
     ("align-nematic-to", opt::value<int>(&align_nematic_to),
-     "Align nematic tensor to velocity (=0), pressure force (=1), or shape (=2)");
+     "Align nematic tensor to velocity (=0), pressure force (=1), or shape (=2)")
+    ("Rnew", opt::value<double>(&Rnew),
+    "New Preferred radius")
+    ("time_Rnew", opt::value<int>(&time_Rnew),
+      "time of setting Rnew")
+    ("munew", opt::value<double>(&munew),
+    "New mu area constraint")
+    ("time_munew", opt::value<int>(&time_munew),
+    "time of setting munew")
+    ("zetaQnew", opt::value<double>(&zetaQnew),
+    "New zetaQ")
+    ("time_zetaQnew", opt::value<int>(&time_zetaQnew),
+    "time of setting zetaQnew");
 
   // init config options
   opt::options_description init("Initial configuration options");
