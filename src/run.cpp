@@ -149,6 +149,9 @@ void Model::UpdatePotAtNode(unsigned n, unsigned q)
   const auto dxs = derivX(sum, s);
   const auto dys = derivY(sum, s);
 
+  a0 = Pi*R*R;
+  //if (n==1 && q==1) cout << "a0= " << a0 << endl;
+
   const double internal = (
       // CH term
       + gam*(8*p*(1-p)*(1-2*p)/lambda - 2*lambda*ll)
@@ -404,7 +407,8 @@ void Model::ReinitSumsAtNode(unsigned k)
 }
 
 void Model::Update(bool store, unsigned nstart)
-{
+{ 
+  //cout << "a0 = " << a0 << endl;
   // Compute all global sums
   for(unsigned n=nstart; n<nphases; ++n)
   {

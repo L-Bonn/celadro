@@ -46,6 +46,7 @@ void Model::Algorithm()
 
   for(unsigned t=0; t<nsteps; t+=ninfo)
   {
+    //cout << "step = " << t << endl;
     // write current frame
     if(!no_write and t>=nstart)
     {
