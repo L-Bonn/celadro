@@ -98,7 +98,7 @@ if __name__ == '__main__':
     #path = '/lustre/astro/rsx187/celadrodata/test_xi_big/*'
     #path = '/lustre/astro/rsx187/celadrodata/test_zS_big/*'#test_omega_zS_big
     #path = '/lustre/astro/rsx187/celadrodata/test_omega_zS_big/*'#
-    path = '/lustre/astro/rsx187/celadrodata/tryRchange250825'#
+    path = '/lustre/astro/rsx187/celadrodata/tryRchangez*omega*'#
 
     #path = sys.argv[1]
     names = glob.glob(path)
