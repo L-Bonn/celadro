@@ -413,6 +413,7 @@ void Model::Update(bool store, unsigned nstart)
   for(unsigned n=nstart; n<nphases; ++n)
   {
     // update only patch (in parallel, each node to a different core)
+    // could the inner loop be simd and the outer parallel?
     PRAGMA_OMP(omp parallel for num_threads(nthreads) if(nthreads))
     for(unsigned q=0; q<patch_N; ++q)
       UpdateSumsAtNode(n, q);
