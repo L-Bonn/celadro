@@ -82,7 +82,9 @@ void Model::Algorithm()
     if (time_zetaQnew != 0  and t>time_zetaQnew) {
       zetaQ = zetaQnew;
     }
-    
+    if (time_zetaSnew != 0  and t>time_zetaSnew) {
+      zetaS = zetaSnew;
+    }
     
     // do the computation
 

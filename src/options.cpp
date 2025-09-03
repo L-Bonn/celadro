@@ -154,7 +154,11 @@ void Model::ParseProgramOptions(int ac, char **av)
     ("zetaQnew", opt::value<double>(&zetaQnew),
     "New zetaQ")
     ("time_zetaQnew", opt::value<int>(&time_zetaQnew),
-    "time of setting zetaQnew");
+    "time of setting zetaQnew")
+    ("zetaSnew", opt::value<double>(&zetaSnew),
+    "New zetaS")
+    ("time_zetaSnew", opt::value<int>(&time_zetaSnew),
+    "time of setting zetaSnew");
 
   // init config options
   opt::options_description init("Initial configuration options");

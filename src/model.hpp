@@ -260,6 +260,8 @@ struct Model
   double zetaQnew = zetaQ;
   int time_zetaQnew = 0;
 
+  double zetaSnew = zetaS;
+  int time_zetaSnew = 0;
 
   /** @} */
   /** Multi-threading parameters
@@ -609,7 +611,9 @@ struct Model
        & auto_name(munew)
        & auto_name(time_munew)
        & auto_name(zetaQnew)
-       & auto_name(time_zetaQnew);
+       & auto_name(time_zetaQnew)
+       & auto_name(zetaSnew)
+       & auto_name(time_zetaSnew);
   }
 
   /** Serialization of parameters (in and out) */
